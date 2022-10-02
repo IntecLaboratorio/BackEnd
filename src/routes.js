@@ -4,6 +4,7 @@ import address from './controllers/addressController.js';
 import instruction from './controllers/instructionController.js';
 import labs from './controllers/labsController.js';
 import user from './controllers/userController.js';
+import login from './controllers/loginController.js';
 
 const router = express.Router();
 
@@ -13,6 +14,7 @@ router.use('/address', address);
 router.use('/instruction', instruction);
 router.use('/labs', labs);
 router.use('/user', user);
+router.use('/login', login);
 
 
 export default router;

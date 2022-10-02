@@ -15,7 +15,7 @@ async function insertLabs(fk_instruction, name_lab, room_index, floor_lab) {
 
 
 async function findLabs() {
-    const conn = await conexao.connect();
+    const conn = await connection.connect();
     const sql = 'SELECT * FROM labs_tbl';
     const [rows] = await conn.query(sql);
     conn.end();
@@ -46,7 +46,7 @@ async function deleteLabs(id) {
 
 // async function FindSpecificLab(id) {
 //     const connec = await database.connec();
-    
+
 //     const sql = "SELECT * FROM labs_tbl WHERE id = ?";
 //     const [rows] = await connec.query(sql, id);
 //     connec.end();

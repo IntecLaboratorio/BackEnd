@@ -37,8 +37,9 @@ router.post('/', [
 
 
 router.get('/', async (request, response) => {
+    const results = await db.findLabs();
+
     try {
-        const results = await db.findLabs();
         if (results.length == 0) {
             response.status(204).json(results)
         } else {
@@ -63,7 +64,7 @@ router.put('/', [
 
 ], async (request, response) => {
     const errors = validationResult(request)
-    if (!errors.isEmpty()) { 
+    if (!errors.isEmpty()) {
         return response.status(400).json({ message: errors.array() });
     }
 
