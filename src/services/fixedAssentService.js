@@ -29,14 +29,23 @@ async function updateFixedAssent(assent_number, serial_number, assent_name, bran
     product_batch, tax_invoice, fk_labs, complement, value_assent, verify, color, id) {
 
     const conn = await connection.connect();
-    
+
     const sql = 'UPDATE fixedAssent_tbl SET assent_number = ?, serial_number = ?, assent_name = ?, brand = ?, model = ?, product_batch = ?, tax_invoice = ?, fk_labs = ?, complement = ?, value_assent = ?, verify = ?, color = ? WHERE id = ?';
-    
+
     const dataFixedAssent = [assent_number, serial_number, assent_name, brand, model, product_batch, tax_invoice, fk_labs, complement, value_assent, verify, color, id];
     await conn.query(sql, dataFixedAssent);
     conn.end();
 
     return;
+}
+
+async function findFixedAssent() {
+    const conn = await connection.connect();
+    const sql = 'SELECT * FROM fixedAssent_tbl';
+    const [rows] = await conn.query(sql);
+    conn.end();
+
+    return rows;
 }
 
 async function deleteFixedAssent(id) {
@@ -46,4 +55,4 @@ async function deleteFixedAssent(id) {
     conn.end();
 }
 
-export default { insertFixedAssent, updateFixedAssent, deleteFixedAssent }
+export default { insertFixedAssent, updateFixedAssent, deleteFixedAssent, findFixedAssent }

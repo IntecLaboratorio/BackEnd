@@ -95,7 +95,7 @@ router.put('/', [
         product_batch, tax_invoice, fk_labs, complement, value_assent, verify, color, id } = request.body;
 
     try {
-        const status_FA = (verify === "Ativo") ? 1 : 0 
+        const status_FA = (verify === "Ativo") ? 1 : 0
         await db.updateFixedAssent(assent_number, serial_number, assent_name, brand, model,
             product_batch, tax_invoice, fk_labs, complement, value_assent, status_FA, color, id)
 
@@ -106,7 +106,20 @@ router.put('/', [
 
 });
 
+router.get('/', async (request, response) => {
+    const results = await db.findFixedAssent();
 
+    try {
+        if (results.length == 0) {
+            response.status(204).json(results)
+        } else {
+            response.status(200).json(results)
+        }
+
+    } catch (err) {
+        response.status(500).json({ message: `Erro encontrado: ${err}` });
+    }
+});
 
 router.delete('/:id', async (request, response) => {
     const { id } = request.params;
