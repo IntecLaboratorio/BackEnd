@@ -9,7 +9,7 @@ router.post('/', [
   body('email').isEmail().withMessage('Informe um email válido'),
   body('password').isStrongPassword({ minLength: 8, minUppercase: 1, minSymbols: 1, minNumbers: 1 }).withMessage('A senha deve conter no mínimo 8 caracteres. Podendo ser letras maiúsculas ou minúsculas, números e caracteres especiais'),
 ], async (request, response) => {
-  const { id_corporate, address, name_user, last_name, cpf, rg, phone, email, password, verify } = request.body;
+  const { id_corporate, address, type_user, name_user, cpf, rg, phone, email, password, verify } = request.body;
 
   const errors = validationResult(request);
 
@@ -18,7 +18,7 @@ router.post('/', [
   }
 
   try {
-    await db.insertUser(id_corporate, address, name_user, last_name, cpf, rg, phone, email, password, verify);
+    await db.insertUser(id_corporate, address, type_user, name_user, cpf, rg, phone, email, password, verify);
   }
   catch (err) {
     response.status(500).json({ message: `Encontramos um erro: ${err}` });
@@ -52,10 +52,10 @@ router.put('/', [
     return response.status(400).json({ message: errors.array() });
   }
 
-  const { id_corporate, address, name_user, last_name, cpf, rg, phone, email, password, verify, id } = request.body;
+  const { id_corporate, address, type_user, name_user, cpf, rg, phone, email, password, verify, id } = request.body;
 
   try {
-    await db.upadateUser(id_corporate, address, name_user, last_name, cpf, rg, phone, email, password, verify, id);
+    await db.upadateUser(id_corporate, address, type_user, name_user, cpf, rg, phone, email, password, verify, id);
     response.status(200).json({ message: 'Usuário atualizado com sucesso.' });
   } catch (err) {
     response.status(500).json({ message: `Encontramos um erro: ${err}` })

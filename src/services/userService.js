@@ -20,10 +20,10 @@ async function findUser() {
 
   return rows;
 }
-async function upadateUser(id_corporate, address, name_user, last_name, cpf, rg, phone, email, password, verify, id) {
+async function upadateUser(id_corporate, address, type_user, name_user, cpf, rg, phone, email, password, verify, id) {
   const conn = await database.connect();
   const sql = 'UPDATE users_tbl SET fk_id_corporate = ?, fk_address = ?, name_user = ?, last_name = ?, cpf = ?, rg = ?, phone = ?, email = ?, senha = ?, verify = ? WHERE id = ?';
-  const dataUser = [id_corporate, address, name_user, last_name, cpf, rg, phone, email, password, verify, id];
+  const dataUser = [id_corporate, address, type_user, name_user, cpf, rg, phone, email, password, verify, id];
   await conn.query(sql, dataUser);
   conn.end();
   return;
