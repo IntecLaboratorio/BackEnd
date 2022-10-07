@@ -1,9 +1,9 @@
 import database from "../repository/connection.js";
 
-async function insertUser(id_corporate, address, name_user, last_name, cpf, rg, phone, email, password, verify) {
+async function insertUser(id_corporate, address, type_user, name_user, cpf, rg, phone, email, password, verify) {
   const conn = await database.connect();
 
-  const sql = 'INSERT INTO users_tbl(fk_id_corporate, fk_address, name_user, last_name, cpf, rg, phone, email, senha, verify) VALUES(?,?,?,?,?,?,?,?,?,?);';
+  const sql = 'INSERT INTO users_tbl(id_corporate, address, type_user, name_user, cpf, rg, phone, email, password, verify) VALUES(?,?,?,?,?,?,?,?,?,?);';
   const dataUser = [id_corporate, address, name_user, last_name, cpf, rg, phone, email, password, verify];
   // console.log(dataUser);
 
