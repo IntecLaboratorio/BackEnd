@@ -5,6 +5,7 @@ import instruction from './controllers/instructionController.js';
 import labs from './controllers/labsController.js';
 import user from './controllers/userController.js';
 import login from './controllers/loginController.js';
+import typeUser from './controllers/typeUserController.js'
 
 const router = express.Router();
 
@@ -15,6 +16,7 @@ router.use('/instruction', instruction);
 router.use('/labs', labs);
 router.use('/user', user);
 router.use('/login', login);
+router.use('/typeUser', typeUser);
 
 
 export default router;
