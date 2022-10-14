@@ -16,8 +16,6 @@ router.post('/', [
 
     body('city').isString('Qual cidade se encontra'),
 
-    body('state').isString(),
-
     body('zip_code').isNumeric().isLength({ min: 8, max: 8 }),
 
 ], async (request, response) => {
@@ -28,7 +26,7 @@ router.post('/', [
         return response.status(400).json({ message: errors.array() });
     }
 
-    const { type_address, address, number_address, complement, neighborhood, city, state, zip_code } = request.body;
+    const { type_address, address, number_address, complement, neighborhood, city, state, zip_code, userCpf } = request.body;
 
 
     try { //varifica se todos os campos estão corretos para cadastrar. Caso contrario aparecerá a mensagem de erro com status 500
@@ -60,13 +58,13 @@ router.put('/', [
 
 ], async (request, response) => {
     const error = validationResult(request)
-    if (!error.isEmpty()) { 
+    if (!error.isEmpty()) {
         return response.status(400).json({ message: error.array() });
     }
 
-    const { type_address, address, number_address, complement, neighborhood, city, state, zip_code, id } = request.body;
+    const { type_address, address, number_address, complement, neighborhood, city, state, zip_code, userCpf, id } = request.body;
 
-    try { 
+    try {
         await db.updateAddress(type_address, address, number_address, complement, neighborhood, city, state, zip_code, id);
         response.status(200).json({ message: "Endereço atualizado com sucesso." });
     } catch (err) {
