@@ -3,7 +3,7 @@ import connection from '../repository/connection.js';
 async function insertAddress(type_address, address, number_address, complement, neighborhood, city, state, zip_code, userCpf) {
     const connec = await connection.connect();
 
-    const sql = 'INSERT INTO address_tbl(type_address, address, number_address, complement, neighborhood, city, state, zip_code, fk_userCpf) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);'; //conexão entre banco e api
+    const sql = 'INSERT INTO userAddress_tbl(type_address, address, number_address, complement, neighborhood, city, state, zip_code, userCpf) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);'; //conexão entre banco e api
 
     const dataAddress = [type_address, address, number_address, complement, neighborhood, city, state, zip_code, userCpf]
 
@@ -16,7 +16,7 @@ async function insertAddress(type_address, address, number_address, complement, 
 async function updateAddress(type_address, address, number_address, complement, neighborhood, city, state, zip_code, userCpf, id) {
     const connec = await connection.connect();
 
-    const sql = "UPDATE address_tbl SET type_address = ?, address = ?, number_address = ?, complement = ?, neighborhood = ?, city = ?, state = ?, zip_code = ?, fk_userCpf WHERE id= ?;"
+    const sql = "UPDATE userAddress_tbl SET type_address = ?, address = ?, number_address = ?, complement = ?, neighborhood = ?, city = ?, state = ?, zip_code = ?, userCpf WHERE id= ?;"
 
     const dataAddress = [type_address, address, number_address, complement, neighborhood, city, state, zip_code, userCpf, id];
 
