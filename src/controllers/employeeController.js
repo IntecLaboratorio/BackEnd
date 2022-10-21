@@ -6,17 +6,17 @@ const router = Express.Router();
 
 router.post('/', [
     body('fk_user').isNumeric().withMessage("Por favor, informe o usuário"),
-
     body("rm").isNumeric().withMessage("Se possivel, informe a matricula do usuário")
 ], async (request, response) => {
 
     const errors = validationResult(request)
-    if (!errors.isEmpty()) { //Verifica se o campo está vazio. Caso esteja retorna erro de bad request
-        console.log(errors.array())
+    if (!errors.isEmpty()) {
+        // console.log(errors.array())
         return response.status(400).json({ message: errors.array() });
     }
 
     const { fk_user, fk_typeUser, rm } = request.body;
+
 
     try {
 
@@ -26,7 +26,7 @@ router.post('/', [
     } catch (error) {
         response.status(500).json({ message: `Erro encontrado: ${error}` });
     }
-});
+})
 
 router.put('/', [
     body('fk_user').isNumeric().withMessage("Por favor, informe o usuário"),

@@ -13,4 +13,16 @@ async function insertReqMaintanance(requerement_date, observation, fk_employee) 
     connec.end();
 }
 
-export default {insertReqMaintanance}
+async function viewReqMaintanance() {
+    const conn = await connection.connect();
+
+    const sql = 'SELECT * FROM  maintananceRequerement_tbl'
+
+    const [rows] = await conn.query(sql);
+
+    conn.end();
+
+    return rows;
+}
+
+export default {insertReqMaintanance, viewReqMaintanance}

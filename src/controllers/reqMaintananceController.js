@@ -10,11 +10,11 @@ router.post('/', [
 ], async (request, response) => {
 
     const errors = validationResult(request)
-    if (!errors.isEmpty()) { 
+    if (!errors.isEmpty()) {
         return response.status(400).json({ message: errors.array() });
     }
 
-    const {requerement_date, observation, fk_employee} = request.body;
+    const { requerement_date, observation, fk_employee } = request.body;
 
     try { //varifica se todos os campos estão corretos para cadastrar. Caso não aparecerá a mensagem de erro com status 500
         await db.insertReqMaintanance(requerement_date, observation, fk_employee);
@@ -25,6 +25,21 @@ router.post('/', [
 
     }
 });
+
+router.get('/', async (request, response) => {
+    const results = await db.viewReqMaintanance();
+
+    try {
+        if (results.length == 0) {
+            response.status(204).json(results)
+        } else {
+            response.status(200).json(results)
+        }
+
+    } catch (err) {
+        response.status(500).json({ message: `Erro encontrado: ${err}` });
+    }
+})
 
 
 export default router
