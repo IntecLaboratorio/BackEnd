@@ -8,11 +8,9 @@ import login from './controllers/loginController.js';
 import typeUser from './controllers/typeUserController.js';
 import employee from './controllers/employeeController.js';
 import reqMaintanance from './controllers/reqMaintananceController.js';
-<<<<<<< HEAD
 import schoolSubject from './controllers/schoolSubjectController.js';
-=======
 import reqLabs from './controllers/reqLabsController.js';
->>>>>>> d33664c46bc06542ed4f81951ceafa9f9c698852
+
 
 const router = express.Router();
 
@@ -26,10 +24,8 @@ router.use('/login', login);
 router.use('/typeUser', typeUser);
 router.use('/employee', employee);
 router.use('/reqMaintanance', reqMaintanance);
-<<<<<<< HEAD
 router.use('/schoolSubject', schoolSubject)
-=======
 router.use('/reqLabs', reqLabs);
->>>>>>> d33664c46bc06542ed4f81951ceafa9f9c698852
+
 
 export default router;

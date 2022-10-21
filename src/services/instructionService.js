@@ -4,7 +4,6 @@ const insertInstruction = async (
     fk_address, corporate_name, cnpj, phone, email, responsable) => {
     const connec = await connection.connect();
 
-    const sql = 'INSERT INTO instruction_tbl (fk_address, corporate_name, cnpj, phone, email, responsable) VALUES (?,?,?,?,?,?);'; 
     //conexão entre banco e api
 
     const dtInstruction = [fk_address, corporate_name, cnpj, phone, email, responsable];
@@ -32,8 +31,11 @@ async function deleteInstruction(id) {
     const connec = await connection.connect();
 
     const sql = 'DELETE FROM instruction_tbl WHERE id = ?'
+
     await connec.query(sql, id)
+    
     connec.end();
+    
     return;
 }
 

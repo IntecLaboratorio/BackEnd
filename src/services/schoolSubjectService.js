@@ -12,4 +12,18 @@ async function insertSchoolSubject(name_school_subjetc, abbreviation, schoolModu
     connec.end();
 }
 
-export default {insertSchoolSubject}
+async function deleteSchoolSubject(id) {
+    const conn = await connection.connect();
+
+    const sql = 'DELETE FROM schoolSubject_tbl WHERE id = ?'
+
+    const dtSchoolSubject = [id];
+
+    await conn.query(sql, dtSchoolSubject)
+
+    conn.end()
+
+    return
+}
+
+export default {insertSchoolSubject, deleteSchoolSubject}

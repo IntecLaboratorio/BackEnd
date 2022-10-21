@@ -19,10 +19,21 @@ router.post('/', [
 
     try {
         await db.insertSchoolSubject(name_school_subjetc, abbreviation, schoolModule);
-        response.status(201).json({ message: 'Funcionário cadastrado com sucesso' })
+        response.status(201).json({ message: 'Disciplina cadastrada com sucesso' })
 
     } catch (error) {
         response.status(500).json({ message: `Erro encontrado: ${error}` }); 
+    }
+});
+
+router.delete('/:id', async (request, response) => {
+    const {id} = request.params;
+
+    try {
+        await db.deleteSchoolSubject(id);
+        response.status(200).json({ message: 'Disciplina deletada.' })
+    } catch (error) {
+        response.status(500).json({ message: `Não foi possivel deletar esta disciplina: ${error}` });
     }
 })
 
