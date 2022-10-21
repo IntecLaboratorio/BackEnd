@@ -8,6 +8,7 @@ import login from './controllers/loginController.js';
 import typeUser from './controllers/typeUserController.js';
 import employee from './controllers/employeeController.js';
 import reqMaintanance from './controllers/reqMaintananceController.js';
+import reqLabs from './controllers/reqLabsController.js';
 
 const router = express.Router();
 
@@ -21,5 +22,6 @@ router.use('/login', login);
 router.use('/typeUser', typeUser);
 router.use('/employee', employee);
 router.use('/reqMaintanance', reqMaintanance);
+router.use('/reqLabs', reqLabs);
 
 export default router;
