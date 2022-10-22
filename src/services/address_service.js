@@ -1,11 +1,11 @@
 import connection from '../repository/connection.js';
 
-async function insertAddress(type_address, address, number_address, complement, neighborhood, city, state, zip_code, userCpf) {
+async function insertAddress(type_address, address, number_address, complement, neighborhood, city, state, zip_code) {
     const connec = await connection.connect();
 
-    const sql = 'INSERT INTO userAddress_tbl(type_address, address, number_address, complement, neighborhood, city, state, zip_code, userCpf) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?);'; //conexão entre banco e api
+    const sql = 'INSERT INTO Address_tbl(type_address, address, number_address, complement, neighborhood, city, state, zip_code) VALUES (?, ?, ?, ?, ?, ?, ?, ?);'; //conexão entre banco e api
 
-    const dataAddress = [type_address, address, number_address, complement, neighborhood, city, state, zip_code, userCpf]
+    const dataAddress = [type_address, address, number_address, complement, neighborhood, city, state, zip_code]
 
     await connec.query(sql, dataAddress); //.query vai executar os comando dentro banco
 
@@ -13,12 +13,12 @@ async function insertAddress(type_address, address, number_address, complement, 
 
 }
 
-async function updateAddress(type_address, address, number_address, complement, neighborhood, city, state, zip_code, userCpf, id) {
+async function updateAddress(type_address, address, number_address, complement, neighborhood, city, state, zip_code, id) {
     const connec = await connection.connect();
 
-    const sql = "UPDATE userAddress_tbl SET type_address = ?, address = ?, number_address = ?, complement = ?, neighborhood = ?, city = ?, state = ?, zip_code = ?, userCpf WHERE id= ?;"
+    const sql = "UPDATE Address_tbl SET type_address = ?, address = ?, number_address = ?, complement = ?, neighborhood = ?, city = ?, state = ?, zip_code = ?, WHERE id= ?;"
 
-    const dataAddress = [type_address, address, number_address, complement, neighborhood, city, state, zip_code, userCpf, id];
+    const dataAddress = [type_address, address, number_address, complement, neighborhood, city, state, zip_code, id];
 
     await connec.query(sql, dataAddress);
 

@@ -5,8 +5,11 @@ import db from '../services/employeeService.js';
 const router = Express.Router();
 
 router.post('/', [
+
     body('fk_user').isNumeric().withMessage("Por favor, informe o usuário"),
+
     body("rm").isNumeric().withMessage("Se possivel, informe a matricula do usuário")
+    
 ], async (request, response) => {
 
     const errors = validationResult(request)

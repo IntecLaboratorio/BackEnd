@@ -1,11 +1,11 @@
 import connection from "../repository/connection.js ";
 
-async function insertSchoolSubject(name_school_subjetc, abbreviation, schoolModule) {
+async function insertSchoolSubject(name_school_subject, abbreviation, schoolModule) {
     const connec = await connection.connect();
 
-    const sql = 'INSERT INTO schoolSubject_tbl (name_school_subjetc, abbreviation, schoolModule) VALUES (?, ?, ?)';
+    const sql = 'INSERT INTO schoolSubject_tbl (name_school_subject, abbreviation, schoolModule) VALUES (?, ?, ?)';
 
-    const dtSchoolSubject = [name_school_subjetc, abbreviation, schoolModule];
+    const dtSchoolSubject = [name_school_subject, abbreviation, schoolModule];
 
     await connec.query(sql, dtSchoolSubject);
 

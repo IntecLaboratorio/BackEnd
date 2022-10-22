@@ -26,7 +26,7 @@ router.post('/', [
         return response.status(400).json({ message: errors.array() });
     }
 
-    const { type_address, address, number_address, complement, neighborhood, city, state, zip_code, userCpf } = request.body;
+    const { type_address, address, number_address, complement, neighborhood, city, state, zip_code } = request.body;
 
 
     try { //varifica se todos os campos estão corretos para cadastrar. Caso contrario aparecerá a mensagem de erro com status 500
@@ -62,7 +62,7 @@ router.put('/', [
         return response.status(400).json({ message: error.array() });
     }
 
-    const { type_address, address, number_address, complement, neighborhood, city, state, zip_code, userCpf, id } = request.body;
+    const { type_address, address, number_address, complement, neighborhood, city, state, zip_code, id } = request.body;
 
     try {
         await db.updateAddress(type_address, address, number_address, complement, neighborhood, city, state, zip_code, id);
