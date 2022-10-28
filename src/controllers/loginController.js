@@ -9,21 +9,22 @@ const router = express.Router();
 router.post('/', [
   body('email').isEmail().withMessage('Informe um email válido'),
 ], async (request, response) => {
-  const { type_user, email, password } = request.body;
+  const {email, password } = request.body;
   const errors = validationResult(request);
-  const results = await db.selectLogin(type_user, email, password);
+  const results = await db.selectLogin( email, password);
 
   if (!errors.isEmpty()) {
     return response.status(400).json({ message: errors.array() });
   }
 
-  console.log(results);
   try {
+
     if (results == 0) {
       return response.status(401).json({ message: `Usuário ou senha inválido` });
-    } else {
-      const { email, userName } = results[0];
-      const token = generateToken(type_user, email, userName);
+    } 
+    else {
+      const { email, name_user, fk_typeUser } = results[0];
+      const token = generateToken(email, name_user, fk_typeUser);
       response.status(200).json({ message: 'Login efetuado com sucesso', token });
     }
   }
