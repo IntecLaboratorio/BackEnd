@@ -2,6 +2,7 @@ import express from "express";
 import { body, validationResult } from "express-validator";
 import { request } from "express";
 import db from "../services/reqLabsService.js";
+import { verify } from "jsonwebtoken";
 
 const router = express.Router();
 
@@ -16,7 +17,7 @@ router.post('/', async (request, response) => {
   const { discipline, bloco_aula, periodo, data_req } = request.body;
 
   try {
-    await db.insertReqLabs(discipline, bloco_aula, periodo, data_req)
+    await db.insertReqLabs(discipline, bloco_aula, periodo, data_req, verify)
 
     response.status(201).json({ message: 'Laboratório solicitado com sucesso' })
   } catch (error) {
@@ -49,7 +50,7 @@ router.put('/', async (request, response) => {
     return response.status(400).json({ message: errors.array() });
   }
 
-  const { discipline, bloco_aula, periodo, data_req, id } = request.body;
+  const { discipline, bloco_aula, periodo, data_req, verify, id } = request.body;
 
   try {
     await db.updateReqLabs(discipline, bloco_aula, periodo, data_req, id);
