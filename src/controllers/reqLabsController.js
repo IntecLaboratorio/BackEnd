@@ -14,7 +14,7 @@ router.post('/', async (request, response) => {
     return response.status(400).json({ message: errors.array() });
   }
 
-  const { discipline, bloco_aula, periodo, data_req } = request.body;
+  const { discipline, bloco_aula, periodo, data_req, verify } = request.body;
 
   try {
     await db.insertReqLabs(discipline, bloco_aula, periodo, data_req, verify)
@@ -53,7 +53,7 @@ router.put('/', async (request, response) => {
   const { discipline, bloco_aula, periodo, data_req, verify, id } = request.body;
 
   try {
-    await db.updateReqLabs(discipline, bloco_aula, periodo, data_req, id);
+    await db.updateReqLabs(discipline, bloco_aula, periodo, data_req, verify, id);
     response.status(200).json({ massage: 'Solicitação atualizada com sucesso.' })
   } catch (error) {
     response.status(500).json({ message: `Houve um problema ao atualizar os dados: ${error}` });
