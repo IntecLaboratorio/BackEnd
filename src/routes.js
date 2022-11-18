@@ -12,6 +12,7 @@ import schoolSubject from './controllers/schoolSubjectController.js';
 import reqLabs from './controllers/reqLabsController.js';
 import educationHub from './controllers/educationHubController.js';
 import courses from './controllers/coursesController.js';
+import firstAccess from './controllers/firstAccessController.js';
 
 
 const router = express.Router();
@@ -30,6 +31,7 @@ router.use('/schoolSubject', schoolSubject)
 router.use('/reqLabs', reqLabs);
 router.use('/educationHub', educationHub);
 router.use('/courses', courses);
+router.use('/firstAccess', firstAccess);
 
 
 export default router;
