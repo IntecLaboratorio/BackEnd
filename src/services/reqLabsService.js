@@ -1,13 +1,13 @@
 import connection from '../repository/connection.js';
 
-async function insertReqLabs(discipline, bloco_aula, periodo, data_req, verify) {
+async function insertReqLabs(discipline, bloco_aula, periodo, data_req) {
   const connec = await connection.connect();
 
-  const sql = 'INSERT INTO reqlab_tbl(fk_discipline, bloco_aula, periodo, data_req, verify) VALUES (?, ?, ?, ?, ?);';
+  const sql = 'INSERT INTO reqlab_tbl(fk_discipline, bloco_aula, periodo, data_req, verify) VALUES (?, ?, ?, ?, 0);';
 
   // verify = false;
 
-  const dataReqLabs = [discipline, bloco_aula, periodo, data_req, verify]
+  const dataReqLabs = [discipline, bloco_aula, periodo, data_req]
 
   await connec.query(sql, dataReqLabs);
 
@@ -15,12 +15,12 @@ async function insertReqLabs(discipline, bloco_aula, periodo, data_req, verify) 
 
 }
 
-async function updateReqLabs(discipline, bloco_aula, periodo, data_req, verify, id) {
+async function updateReqLabs(discipline, bloco_aula, periodo, data_req, id) {
   const connec = await connection.connect();
 
-  const sql = "UPDATE reqlab_tbl SET fk_discipline = ?, bloco_aula = ?, periodo = ?, data_req = ?, verify = ? WHERE id= ?;"
+  const sql = "UPDATE reqlab_tbl SET fk_discipline = ?, bloco_aula = ?, periodo = ?, data_req = ?, verify = 0 WHERE id= ?;"
 
-  const dataReqLabs = [discipline, bloco_aula, periodo, data_req, verify, id];
+  const dataReqLabs = [discipline, bloco_aula, periodo, data_req, id];
 
   await connec.query(sql, dataReqLabs);
 
