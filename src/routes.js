@@ -14,6 +14,7 @@ import educationHub from './controllers/educationHubController.js';
 import courses from './controllers/coursesController.js';
 import firstAccess from './controllers/firstAccessController.js';
 import aceite from './controllers/aceiteController.js';
+import passwordUser from './controllers/passwordUserController.js'
 
 
 const router = express.Router();
@@ -34,6 +35,7 @@ router.use('/educationHub', educationHub);
 router.use('/courses', courses);
 router.use('/firstAccess', firstAccess);
 router.use('/aceite', aceite);
+router.use('/passwordUser', passwordUser);
 
 
 export default router;
