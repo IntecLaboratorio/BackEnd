@@ -19,7 +19,7 @@ router.post('/', async (request, response) => {
       return response.status(401).json({ message: `Usuário não encontrado!` });
     }
     else {
-      response.status(200).json("true");
+      response.status(200).json({ message: `Usuário encontrado!` });
     }
   }
   catch (err) {
