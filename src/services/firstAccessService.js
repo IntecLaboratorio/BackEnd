@@ -9,4 +9,13 @@ async function selectFirstAccess(email) {
   return rows;
 }
 
-export default { selectFirstAccess };
+async function updateFirstAccess(email) {
+  const conn = await database.connect();
+  const sql = 'UPDATE users_tbl SET firstAccess = 0 WHERE email = ?';
+  const dataAccess = [email];
+  await conn.query(sql, dataAccess);
+  conn.end();
+  return;
+}
+
+export default { selectFirstAccess, updateFirstAccess };

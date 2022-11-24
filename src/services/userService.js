@@ -3,7 +3,7 @@ import database from "../repository/connection.js";
 async function insertUser(id_corporate, address, type_user, name_user, cpf, rg, phone, email, password, verify) {
   const conn = await database.connect();
 
-  const sql = 'INSERT INTO users_tbl(fk_id_corporate, fk_address,fk_typeUser, name_user, cpf, rg, phone, email, senha, verify) VALUES(?,?,?,?,?,?,?,?,?,?);';
+  const sql = 'INSERT INTO users_tbl(fk_id_corporate, fk_address,fk_typeUser, name_user, cpf, rg, phone, email, senha, verify, firstAccess) VALUES(?,?,?,?,?,?,?,?,?,?, 1);';
   const dataUser = [id_corporate, address, type_user, name_user, cpf, rg, phone, email, password, verify];
   console.log(dataUser);
 

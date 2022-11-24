@@ -1,13 +1,13 @@
 import express from "express";
 import { body, validationResult } from "express-validator";
-import db from "../services/firstAccessService.js";
+import db from "../services/passwordUser.js";
 
 const router = express.Router();
 
 router.post('/', async (request, response) => {
-  const { email } = request.body;
+  const { email, senhaAtual } = request.body;
   const errors = validationResult(request);
-  const results = await db.selectFirstAccess(email);
+  const results = await db.selectPassword(email, senhaAtual);
 
   if (!errors.isEmpty()) {
     return response.status(400).json({ message: errors.array() });
@@ -19,8 +19,7 @@ router.post('/', async (request, response) => {
       return response.status(401).json({ message: `Usuário não encontrado!` });
     }
     else {
-      const { firstAccess } = results[0];
-      response.status(200).json({ firstAccess });
+      response.status(200).json({ message: `Usuário encontrado!` });
     }
   }
   catch (err) {
@@ -36,10 +35,10 @@ router.put('/', async (request, response) => {
     return response.status(400).json({ message: errors.array() });
   }
 
-  const { email } = request.body;
+  const { senha, email } = request.body;
 
   try {
-    await db.updateFirstAccess(email);
+    await db.updatePassword(senha, email);
     response.status(200).json({ message: 'Usuário atualizado com sucesso.' });
   } catch (err) {
     response.status(500).json({ message: `Encontramos um erro: ${err}` })
