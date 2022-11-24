@@ -5,8 +5,10 @@ import db from '../services/reqMaintananceService.js';
 const router = Express.Router();
 
 router.post('/', [
-    body("requerement_date").isDate().withMessage("Não deixe de colocar a data da solicitação"),
-    body("observation").isString().withMessage("Escreva sobre o problema encontrado. Ex: 'CPU aberta sem placa mãe'."),
+    body("fk_lab").isString(),
+    body("num_sala").isNumeric().withMessage("Fale o número da sala."),
+    body("requerement_date").isDate().withMessage("Por favor, fale a data."),
+    body("observation").isString().withMessage("Por favor, explique o problema encontrado.")
 ], async (request, response) => {
 
     const errors = validationResult(request)
@@ -14,10 +16,10 @@ router.post('/', [
         return response.status(400).json({ message: errors.array() });
     }
 
-    const { requerement_date, observation, fk_employee } = request.body;
+    const { type_assent, fk_lab, num_sala, requerement_date, observation } = request.body;
 
     try { //varifica se todos os campos estão corretos para cadastrar. Caso não aparecerá a mensagem de erro com status 500
-        await db.insertReqMaintanance(requerement_date, observation, fk_employee);
+        await db.insertReqMaintanance(type_assent, fk_lab, num_sala, requerement_date, observation);
 
         response.status(201).json({ message: 'Solicitação registrada com sucesso!' })
     } catch (error) {
