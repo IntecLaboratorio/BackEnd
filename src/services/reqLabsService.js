@@ -27,7 +27,6 @@ async function updateReqLabs(discipline, bloco_aula, periodo, data_req, id) {
   connec.end();
 }
 
-
 async function deleteReqLabs(id) {
   const connec = await connection.connect();
 

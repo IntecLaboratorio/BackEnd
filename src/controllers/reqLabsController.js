@@ -1,4 +1,4 @@
-import express, { response } from "express";
+import express from "express";
 import { body, validationResult } from "express-validator";
 import { request } from "express";
 import db from "../services/reqLabsService.js";
@@ -60,7 +60,6 @@ router.put('/', async (request, response) => {
 
 
 });
-
 
 router.delete('/:id', async (request, response) => {
   const { id } = request.params;

@@ -1,12 +1,12 @@
 import connection from "../repository/connection.js ";
 
-async function insertReqMaintanance(type_assent, fk_lab, num_sala, requerement_date, observation) {
+async function insertReqMaintanance(requerement_date, observation, fk_employee) {
     
     const connec = await connection.connect();
 
-    const sql = "INSERT INTO maintananceRequerement_tbl (type_assent,fk_lab, num_sala, requerement_date, observation) VALUES (?, ?, ?, ?, ?)";
+    const sql = "INSERT INTO maintananceRequerement_tbl (requerement_date, observation, fk_employee) VALUES (?, ?, ?)";
 
-    const dtReqMaintanance = [type_assent, fk_lab, num_sala, requerement_date, observation];
+    const dtReqMaintanance = [requerement_date, observation, fk_employee];
 
     await connec.query(sql, dtReqMaintanance);
 
