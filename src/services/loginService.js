@@ -10,4 +10,14 @@ async function selectLogin(email, password) {
   return rows;
 }
 
-export default { selectLogin };
+async function resetPassword(email, password) {
+  const conn = await database.connect();
+  const sql = 'UPDATE users_tbl SET senha = ? WHERE email = ?;'
+  const reset = [password, email]
+  conn.query(sql, reset);
+  conn.end();
+
+  return true
+}
+
+export default { selectLogin, resetPassword };

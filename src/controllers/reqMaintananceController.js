@@ -14,10 +14,10 @@ router.post('/', [
         return response.status(400).json({ message: errors.array() });
     }
 
-    const { requerement_date, observation, fk_employee } = request.body;
+    const { type_assent, room, num_room, requerement_date, observation, num_assent } = request.body;
 
     try { //varifica se todos os campos estão corretos para cadastrar. Caso não aparecerá a mensagem de erro com status 500
-        await db.insertReqMaintanance(requerement_date, observation, fk_employee);
+        await db.insertReqMaintanance(type_assent, room, num_room, requerement_date, observation, num_assent);
 
         response.status(201).json({ message: 'Solicitação registrada com sucesso!' })
     } catch (error) {

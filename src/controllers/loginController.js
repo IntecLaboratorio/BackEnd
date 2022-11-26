@@ -3,6 +3,8 @@ import { body, validationResult } from "express-validator";
 import { request } from "express";
 import { generateToken } from "../helpers/userfeatures.js";
 import db from "../services/loginservice.js";
+import { sendEmail } from "../helpers/sendemail.js";
+import { generatedPassword } from "../helpers/generatedPassword.js";
 
 const router = express.Router();
 
@@ -31,6 +33,22 @@ router.post('/', [
   catch (err) {
     response.status(500).json({ message: `Encontramos um erro: ${err}` });
   }
+
+  //reset da senha
+  router.post('/reset', async(req, res) => {
+    const {email} = req.body;
+ 
+    const password = generatedPassword();
+ 
+    const passReseted =  await db.reset(email, password)
+ 
+    sendEmail(email, password)
+    if(passReseted){
+     res.status(200).json({
+       message: `Senha atualizada`
+     })
+   }
+ }) 
 
 });
 

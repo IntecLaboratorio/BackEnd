@@ -6,7 +6,7 @@ const router = Express.Router();
 
 //insert
 router.post('/', [
-    body('fk_address').isString(),
+    // body('fk_address').isString(),
 
     body('corporate_name').isString(),
 
@@ -26,10 +26,10 @@ router.post('/', [
         return response.status(400).json({ message: errors.array() });
     }
 
-    const { fk_address, corporate_name, cnpj, phone, email, responsable } = request.body;
+    const {corporate_name, cnpj, phone, email, responsable } = request.body;
 
     try { //varifica se todos os campos estão corretos para cadastrar. Caso não aparecerá a mensagem de erro com status 500
-        await db.insertInstruction(fk_address, corporate_name, cnpj, phone, email, responsable);
+        await db.insertInstruction(corporate_name, cnpj, phone, email, responsable);
 
         response.status(201).json({ message: 'Instituição cadastrada com sucesso!' })
     } catch (error) {
@@ -61,10 +61,10 @@ router.put('/', [
         return response.status(400).json({ message: errors.array() });
     }
 
-    const { fk_address, corporate_name, cnpj, phone, email, responsable, id } = request.body;
+    const { corporate_name, cnpj, phone, email, responsable, id } = request.body;
 
     try { //varifica se houve alteração em algum campo para atualizar. Caso não aparecerá a mensagem de erro com status 500
-        await db.updateInstruction(fk_address, corporate_name, cnpj, phone, email, responsable, id);
+        await db.updateInstruction(corporate_name, cnpj, phone, email, responsable, id);
         response.status(200).json({ message: "Dados da instituição atualizados com sucesso." })
     } catch (error) {
         response.status(500).json({ message: `Ocorreu um problema ao ataulizar os dados: ${error}` });

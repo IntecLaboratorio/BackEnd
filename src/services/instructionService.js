@@ -1,12 +1,12 @@
 import connection from "../repository/connection.js ";
 
 const insertInstruction = async (
-    fk_address, corporate_name, cnpj, phone, email, responsable) => {
+    corporate_name, cnpj, phone, email, responsable) => {
     const connec = await connection.connect();
 
-    const sql = 'INSERT INTO instruction_tbl (fk_address, corporate_name, cnpj, phone, email, responsable) VALUES (?, ?, ?, ?, ?, ?);'
+    const sql = 'INSERT INTO instruction_tbl (corporate_name, cnpj, phone, email, responsable) VALUES ( ?, ?, ?, ?, ?);'
 
-    const dtInstruction = [fk_address, corporate_name, cnpj, phone, email, responsable];
+    const dtInstruction = [corporate_name, cnpj, phone, email, responsable];
 
     await connec.query(sql, dtInstruction); //.query vai executar os comando dentro banco
 
@@ -15,12 +15,12 @@ const insertInstruction = async (
 }
 
 const updateInstruction = async (
-    fk_address, corporate_name, cnpj, phone, email, responsable, id) => {
+    corporate_name, cnpj, phone, email, responsable, id) => {
     const connec = await connection.connect();
 
-    const sql = 'UPDATE instruction_tbl SET fk_address = ?, corporate_name = ?, cnpj = ?, phone = ?, email = ?, responsable = ? WHERE id = ?'
+    const sql = 'UPDATE instruction_tbl SET corporate_name = ?, cnpj = ?, phone = ?, email = ?, responsable = ? WHERE id = ?'
 
-    const dtLabs = [fk_address, corporate_name, cnpj, phone, email, responsable, id];
+    const dtLabs = [corporate_name, cnpj, phone, email, responsable, id];
 
     await connec.query(sql, dtLabs);
 
