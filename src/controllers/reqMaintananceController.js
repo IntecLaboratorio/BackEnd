@@ -5,7 +5,7 @@ import db from '../services/reqMaintananceService.js';
 const router = Express.Router();
 
 router.post('/', [
-    body("requerement_date").isDate().withMessage("Não deixe de colocar a data da solicitação"),
+    body("requerement_date").isDate('yyyy-mm-dd').withMessage("Não deixe de colocar a data da solicitação"),
     body("observation").isString().withMessage("Escreva sobre o problema encontrado. Ex: 'CPU aberta sem placa mãe'."),
 ], async (request, response) => {
 

@@ -22,7 +22,9 @@ async function findUser() {
 }
 async function upadateUser(id_corporate, type_user, name_user, email, password, verify, id) {
   const conn = await database.connect();
+
   const sql = 'UPDATE users_tbl SET fk_id_corporate = ?, fk_address = ?, fk_typeUser = ?, name_user = ?, email = ?, senha = ?, verify = ? WHERE id = ?';
+
   const dataUser = [id_corporate, type_user, name_user, email, password, verify, id];
   await conn.query(sql, dataUser);
   conn.end();

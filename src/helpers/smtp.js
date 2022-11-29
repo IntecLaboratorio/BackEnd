@@ -4,7 +4,7 @@ const config = {
     secure: false,
     auth: {
         user: 'guilhermesribeiro05@gmail.com',
-        pass: 'Intecadmin123',
+        pass: 'gs_pnr@05!',
     },
     tls: {
         rejectUnauthorized: false,

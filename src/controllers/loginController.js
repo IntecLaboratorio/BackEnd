@@ -3,8 +3,9 @@ import { body, validationResult } from "express-validator";
 import { request } from "express";
 import { generateToken } from "../helpers/userfeatures.js";
 import db from "../services/loginservice.js";
+import { generatedPassword } from "../helpers/resetPassword.js";
 import { sendEmail } from "../helpers/sendemail.js";
-import { generatedPassword } from "../helpers/generatedPassword.js";
+
 
 const router = express.Router();
 
@@ -40,10 +41,12 @@ router.post('/', [
  
     const password = generatedPassword();
  
-    const passReseted =  await db.reset(email, password)
+    const pswReseted =  await db.resetPassword(email, password)
  
-    sendEmail(email, password)
-    if(passReseted){
+
+    if(pswReseted){
+      sendEmail(email, password)
+      console.log(sendEmail)
      res.status(200).json({
        message: `Senha atualizada`
      })
