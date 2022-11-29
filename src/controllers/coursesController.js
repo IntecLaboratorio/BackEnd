@@ -74,4 +74,20 @@ router.delete('/:id', async (request, response) => {
     }
 });
 
+// Busca
+router.get('/', async (request, response) => {
+    const results = await db.findCourses();
+  
+    try {
+      if (results.length == 0) {
+        response.status(204).json(results)
+      } else {
+        response.status(200).json(results)
+      }
+  
+    } catch (err) {
+      response.status(500).json({ message: `Erro encontrado: ${err}` });
+    }
+  });
+
 export default router

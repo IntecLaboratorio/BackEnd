@@ -41,4 +41,13 @@ async function deleteCourse(id) {
     return;
 }
 
-export default {insertCourse, updateCourse, deleteCourse}
+async function findCourses() {
+    const conn = await connection.connect();
+    const sql = 'SELECT * FROM courses_tbl';
+    const [rows] = await conn.query(sql);
+    conn.end();
+  
+    return rows;
+  }
+
+export default {insertCourse, updateCourse, deleteCourse, findCourses}
