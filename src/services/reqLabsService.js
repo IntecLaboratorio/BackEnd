@@ -5,8 +5,6 @@ async function insertReqLabs(discipline, bloco_aula, periodo, data_req) {
 
   const sql = 'INSERT INTO reqlab_tbl(fk_discipline, bloco_aula, periodo, data_req, verify) VALUES (?, ?, ?, ?, 0);';
 
-  // verify = false;
-
   const dataReqLabs = [discipline, bloco_aula, periodo, data_req]
 
   await connec.query(sql, dataReqLabs);
