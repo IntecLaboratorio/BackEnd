@@ -21,12 +21,12 @@ router.post('/', [
         return response.status(400).json({ message: errors.array() });
     }
 
-    const { fk_instruction, fk_type_hub, name_course, course_time, initial_date, final_date } = request.body;
+    const { fk_instruction, name_course, course_time, initial_date, final_date } = request.body;
 
 
     try {
 
-        await db.insertCourse(fk_instruction, fk_type_hub, name_course, course_time, initial_date, final_date);
+        await db.insertCourse(fk_instruction, name_course, course_time, initial_date, final_date);
         response.status(201).json({ message: 'Curso cadastrado com sucesso' })
 
     } catch (error) {
@@ -50,10 +50,10 @@ router.put('/', [
         return response.status(400).json({ message: errors.array() });
     }
 
-    const { fk_instruction, fk_type_hub, name_course, course_time, initial_date, final_date, id } = request.body;
+    const { fk_instruction, name_course, course_time, initial_date, final_date, id } = request.body;
 
     try {
-        await db.updateCourse(fk_instruction, fk_type_hub, name_course, course_time, initial_date, final_date, id);
+        await db.updateCourse(fk_instruction, name_course, course_time, initial_date, final_date, id);
         response.status(200).json({ massage: 'Curso atualizado com sucesso.' })
     } catch (error) {
         response.status(500).json({ message: `Houve um problema ao atualizar os dados: ${error}` });
