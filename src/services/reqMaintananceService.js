@@ -16,7 +16,7 @@ async function insertReqMaintanance(type_assent, room, num_room, requerement_dat
 async function viewReqMaintanance() {
     const conn = await connection.connect();
 
-    const sql = 'SELECT * FROM  maintananceRequerement_tbl'
+    const sql = 'SELECT * FROM maintananceRequerement_tbl'
 
     const [rows] = await conn.query(sql);
 
@@ -25,4 +25,13 @@ async function viewReqMaintanance() {
     return rows;
 }
 
-export default {insertReqMaintanance, viewReqMaintanance}
+async function deleteMaintanace(id) {
+    const connec = await connection.connect();
+  
+    const sql = "DELETE FROM maintananceRequerement_tbl WHERE id = ?;";
+    await connec.query(sql, id);
+    connec.end();
+    return;
+  }
+
+export default {insertReqMaintanance, viewReqMaintanance, deleteMaintanace}

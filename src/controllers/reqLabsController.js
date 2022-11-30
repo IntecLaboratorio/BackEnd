@@ -68,7 +68,7 @@ router.delete('/:id', async (request, response) => {
     await db.deleteReqLabs(id);
     response.status(200).json({ massage: 'Solicitação deletada.' })
   } catch (error) {
-    response.status(500).json({ message: `Não foi possivel deletar esse laboratório: ${error}` });
+    response.status(500).json({ message: `Não foi possivel deletar essa solicitação: ${error}` });
   }
 });
 
