@@ -9,7 +9,7 @@ async function insertReqLabs(discipline, bloco_aula, periodo, data_req) {
 
   await connec.query(sql, dataReqLabs);
 
-  connec.end();
+connec.end();
 
 }
 

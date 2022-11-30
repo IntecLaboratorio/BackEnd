@@ -15,9 +15,8 @@ import courses from './controllers/coursesController.js';
 import firstAccess from './controllers/firstAccessController.js';
 import aceite from './controllers/aceiteController.js';
 import passwordUser from './controllers/passwordUserController.js'
-import validateCpf from './controllers/validateCpfController.js'
-import validateRg from "./controllers/validateRgController.js";
 import validateEmail from "./controllers/validateEmailController.js";
+import validateData from "./controllers/validateDataController.js";
 
 
 const router = express.Router();
@@ -39,9 +38,8 @@ router.use('/courses', courses);
 router.use('/firstAccess', firstAccess);
 router.use('/aceite', aceite);
 router.use('/passwordUser', passwordUser);
-router.use('/validateCpf', validateCpf);
-router.use('/validateRg', validateRg);
 router.use('/validateEmail', validateEmail);
+router.use('/validateData', validateData);
 
 
 export default router;
