@@ -10,7 +10,7 @@ async function selectLogin(email, password) {
   return rows;
 }
 
-async function resetPassword(email, senha) {
+async function resetPassword(email, password) {
   const conn = await database.connect();
   const sql = 'UPDATE users_tbl SET senha = ? WHERE email = ?;'
   const reset = [password, email]

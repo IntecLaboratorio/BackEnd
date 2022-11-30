@@ -3,8 +3,8 @@ const config = {
     port: 587,
     secure: false,
     auth: {
-        user: 'guilhermesribeiro05@gmail.com',
-        pass: 'gs_pnr@05!',
+        user: 'suporte.inteclab@gmail.com',
+        pass: 'ciqzjyubajwnmqtg',
     },
     tls: {
         rejectUnauthorized: false,
