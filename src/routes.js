@@ -17,6 +17,7 @@ import aceite from './controllers/aceiteController.js';
 import passwordUser from './controllers/passwordUserController.js'
 import validateEmail from "./controllers/validateEmailController.js";
 import validateData from "./controllers/validateDataController.js";
+import validateRecPassword from "./controllers/validateRecPassword.js";
 import statusManutencao from "./controllers/statusManutencaoController.js";
 
 
@@ -42,6 +43,7 @@ router.use('/passwordUser', passwordUser);
 router.use('/validateEmail', validateEmail);
 router.use('/validateData', validateData);
 router.use('/status_manutencao', statusManutencao);
+router.use('/validateRecPassword', validateRecPassword);
 
 
 export default router;
