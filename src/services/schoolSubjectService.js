@@ -26,4 +26,13 @@ async function deleteSchoolSubject(id) {
     return
 }
 
-export default {insertSchoolSubject, deleteSchoolSubject}
+async function findDicipline() {
+    const conn = await connection.connect();
+    const sql = 'SELECT * FROM schoolSubject_tbl';
+    const [rows] = await conn.query(sql);
+    conn.end();
+  
+    return rows;
+  }
+
+export default {insertSchoolSubject, deleteSchoolSubject, findDicipline}
