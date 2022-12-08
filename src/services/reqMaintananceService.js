@@ -1,12 +1,12 @@
 import connection from "../repository/connection.js ";
 
-async function insertReqMaintanance(type_assent, room, num_room, requerement_date, observation, num_assent, user_req) {
+async function insertReqMaintanance(type_assent, room, num_room, observation, num_assent, user_req) {
     
     const connec = await connection.connect();
 
-    const sql = "INSERT INTO maintananceRequerement_tbl (type_assent, room, num_room, requerement_date, observation, num_assent, user_req, user_fin, whatWasDone, fk_status_manutencao, data_abertura, data_fechamento) VALUES (?, ?, ?, ?, ?, ?, ?,  null, '', 1, NOW(), null)";
+    const sql = "INSERT INTO maintananceRequerement_tbl (type_assent, room, num_room, requerement_date, observation, num_assent, user_req, user_fin, whatWasDone, fk_status_manutencao, data_abertura, data_fechamento) VALUES (?, ?, ?, CURDATE(), ?, ?, ?,  null, '', 1, NOW(), null)";
 
-    const dtReqMaintanance = [type_assent, room, num_room, requerement_date, observation, num_assent, user_req];
+    const dtReqMaintanance = [type_assent, room, num_room, observation, num_assent, user_req];
 
     console.log('Teste Back' + dtReqMaintanance)
 
@@ -24,12 +24,12 @@ async function updateReqMaintanance(user_fin, whatWasDone, status_manutencao, id
     return;
   }
 
-async function viewReqMaintanance() {
+async function viewReqMaintanance(id) {
     const conn = await connection.connect();
 
-    const sql = 'SELECT * FROM maintananceRequerement_tbl'
+    const sql =  id == 0 ? 'SELECT * FROM maintananceRequerement_tbl' : 'SELECT * FROM maintananceRequerement_tbl WHERE fk_status_manutencao = ?';
 
-    const [rows] = await conn.query(sql);
+    const [rows] = await conn.query(sql, id);
 
     conn.end();
 
