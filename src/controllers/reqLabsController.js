@@ -13,10 +13,10 @@ router.post('/', async (request, response) => {
     return response.status(400).json({ message: errors.array() });
   }
 
-  const { fk_discipline, bloco_aula, periodo, data_req, fk_status_reqLab, user_req, user_fin, data_abertura, data_fechamento } = request.body;
+  const { fk_discipline, lab ,bloco_aula, periodo, data_req, fk_status_reqLab, user_req } = request.body;
 
   try {
-    await db.insertReqLabs(fk_discipline, bloco_aula, periodo, data_req, fk_status_reqLab, user_req, user_fin, data_abertura, data_fechamento)
+    await db.insertReqLabs(fk_discipline, lab, bloco_aula, periodo, data_req, fk_status_reqLab, user_req)
 
     response.status(201).json({ message: 'Laboratório solicitado com sucesso' })
   } catch (error) {
@@ -49,10 +49,10 @@ router.put('/', async (request, response) => {
     return response.status(400).json({ message: errors.array() });
   }
 
-  const { fk_discipline, bloco_aula, periodo, data_req, fk_status_reqLab, user_req, user_fin, data_abertura, data_fechamento, id } = request.body;
+  const { fk_discipline, lab, bloco_aula, periodo, data_req, fk_status_reqLab, user_req, user_fin, data_abertura, data_fechamento, id } = request.body;
 
   try {
-    await db.updateReqLabs(fk_discipline, bloco_aula, periodo, data_req, fk_status_reqLab, user_req, user_fin, data_abertura, data_fechamento, id);
+    await db.updateReqLabs(fk_discipline, lab,  bloco_aula, periodo, data_req, fk_status_reqLab, user_req, user_fin, data_abertura, data_fechamento, id);
     response.status(200).json({ massage: 'Solicitação atualizada com sucesso.' })
   } catch (error) {
     response.status(500).json({ message: `Houve um problema ao atualizar os dados: ${error}` });
