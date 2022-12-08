@@ -36,7 +36,7 @@ async function deleteReqLabs(id) {
 
 async function findReqLabs(id) {
   const conn = await connection.connect();
-  const sql = id == 0 ? 'SELECT * FROM reqlab_tbl' : 'SELECT * FROM reqlab_tbl WHERE fk_status_manutencao = ?';
+  const sql = id == 0 ? 'SELECT * FROM reqlab_tbl' : 'SELECT * FROM reqlab_tbl WHERE fk_status_reqLab = ?';
   const [rows] = await conn.query(sql, id);
   conn.end();
 
