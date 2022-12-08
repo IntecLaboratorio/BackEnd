@@ -5,7 +5,6 @@ import db from '../services/reqMaintananceService.js';
 const router = Express.Router();
 
 router.post('/', [
-    body("requerement_date").isDate('yyyy-mm-dd').withMessage("Não deixe de colocar a data da solicitação"),
     body("observation").isString().withMessage("Escreva sobre o problema encontrado. Ex: 'CPU aberta sem placa mãe'."),
 ], async (request, response) => {
 
@@ -14,10 +13,10 @@ router.post('/', [
         return response.status(400).json({ message: errors.array() });
     }
 
-    const { type_assent, room, num_room, requerement_date, observation, num_assent, user_req } = request.body;
+    const { type_assent, room, num_room, observation, num_assent, user_req } = request.body;
 
     try { //varifica se todos os campos estão corretos para cadastrar. Caso não aparecerá a mensagem de erro com status 500
-        await db.insertReqMaintanance(type_assent, room, num_room, requerement_date, observation, num_assent, user_req);
+        await db.insertReqMaintanance(type_assent, room, num_room, observation, num_assent, user_req);
 
         response.status(201).json({ message: 'Solicitação registrada com sucesso!' })
     } catch (error) {
@@ -45,9 +44,11 @@ router.put('/', async (request, response) => {
     }
 });
 
-router.get('/', async (request, response) => {
-    const results = await db.viewReqMaintanance();
+router.get('/:id', async (request, response) => {
+    const {id} = request.params
 
+    const results = await db.viewReqMaintanance(id);
+    
     try {
         if (results.length == 0) {
             response.status(204).json(results)
