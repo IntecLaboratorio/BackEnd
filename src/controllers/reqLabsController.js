@@ -27,8 +27,9 @@ router.post('/', async (request, response) => {
 });
 
 // Busca
-router.get('/', async (request, response) => {
-  const results = await db.findReqLabs();
+router.get('/:id', async (request, response) => {
+  const {id} = request.params
+  const results = await db.findReqLabs(id);
 
   try {
     if (results.length == 0) {
