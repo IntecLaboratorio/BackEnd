@@ -19,6 +19,7 @@ import validateEmail from "./controllers/validateEmailController.js";
 import validateData from "./controllers/validateDataController.js";
 import validateRecPassword from "./controllers/validateRecPassword.js";
 import statusManutencao from "./controllers/statusManutencaoController.js";
+import statusReqlab from "./controllers/statusReqlabController.js";
 
 
 const router = express.Router();
@@ -43,6 +44,7 @@ router.use('/passwordUser', passwordUser);
 router.use('/validateEmail', validateEmail);
 router.use('/validateData', validateData);
 router.use('/status_manutencao', statusManutencao);
+router.use('/statusReqlab', statusReqlab);
 router.use('/validateRecPassword', validateRecPassword);
 
 

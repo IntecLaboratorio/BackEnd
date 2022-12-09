@@ -13,12 +13,12 @@ connec.end();
 
 }
 
-async function updateReqLabs(fk_discipline, lab, bloco_aula, periodo, data_req, fk_status_reqLab, user_req, id) {
+async function updateReqLabs(status_reqLab, user_fin, id) {
   const connec = await connection.connect();
 
-  const sql = "UPDATE reqlab_tbl SET user_fin = ?, fk_status_reqLab = ?, data_fechamento = NOW() WHERE id= ?;"
+  const sql = "UPDATE reqlab_tbl SET fk_status_reqLab = ?, user_fin = ?, data_fechamento = NOW() WHERE id= ?;"
 
-  const dataView = [fk_discipline, lab, bloco_aula, periodo, data_req, fk_status_reqLab, user_req, id];
+  const dataView = [status_reqLab, user_fin, id];
 
   await connec.query(sql, dataView);
 
@@ -36,11 +36,15 @@ async function deleteReqLabs(id) {
 
 async function findReqLabs(id) {
   const conn = await connection.connect();
-  const sql = id == 0 ? 'SELECT * FROM reqlab_tbl' : 'SELECT * FROM reqlab_tbl WHERE fk_status_reqLab = ?';
+
+  const sql =  id == 0 ? 'SELECT * FROM reqlab_tbl' : 'SELECT * FROM reqlab_tbl WHERE fk_status_reqLab = ?';
+
   const [rows] = await conn.query(sql, id);
+
   conn.end();
 
   return rows;
 }
+
 
 export default { insertReqLabs, updateReqLabs, deleteReqLabs, findReqLabs }

@@ -29,19 +29,20 @@ router.post('/', async (request, response) => {
 // Busca
 router.get('/:id', async (request, response) => {
   const {id} = request.params
-  const results = await db.findReqLabs(id);
 
+  const results = await db.findReqLabs(id);
+  
   try {
-    if (results.length == 0) {
-      response.status(204).json(results)
-    } else {
-      response.status(200).json(results)
-    }
+      if (results.length == 0) {
+          response.status(204).json(results)
+      } else {
+          response.status(200).json(results)
+      }
 
   } catch (err) {
-    response.status(500).json({ message: `Erro encontrado: ${err}` });
+      response.status(500).json({ message: `Erro encontrado: ${err}` });
   }
-});
+})
 
 // Atualização
 router.put('/', async (request, response) => {
@@ -50,10 +51,10 @@ router.put('/', async (request, response) => {
     return response.status(400).json({ message: errors.array() });
   }
 
-  const { fk_discipline, lab, bloco_aula, periodo, data_req, fk_status_reqLab, user_req, user_fin, data_abertura, data_fechamento, id } = request.body;
+  const { status_reqLab, user_fin, id } = request.body;
 
   try {
-    await db.updateReqLabs(fk_discipline, lab,  bloco_aula, periodo, data_req, fk_status_reqLab, user_req, user_fin, data_abertura, data_fechamento, id);
+    await db.updateReqLabs(status_reqLab, user_fin, id);
     response.status(200).json({ massage: 'Solicitação atualizada com sucesso.' })
   } catch (error) {
     response.status(500).json({ message: `Houve um problema ao atualizar os dados: ${error}` });
